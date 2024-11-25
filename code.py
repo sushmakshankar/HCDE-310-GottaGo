@@ -21,4 +21,14 @@
 # output: web or mobile app
 # goals: help the user identify nearby bathrooms to the event's location before and during the event
 
+#PSUEDO FUNCTION #1
+#funciton find_event(place)
+#user inputs query as a place and the function makes a call to events api.
+#loop through response data recieved and display a list of events to the user
 
+#PSUEDO FUNCTION #2
+#function find_restroom(cordinates)
+#function will find available restrooms within a set radius
+
+#PSUEDO FUNCTION #3
+#any filters the user might want to engage.
