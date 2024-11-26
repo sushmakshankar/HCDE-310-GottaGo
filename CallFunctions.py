@@ -4,7 +4,7 @@ import	urllib.	parse, urllib.request, urllib.error, json, pprint
 #API 1 Status: works :)
 def get_restroom():
     try:
-        url = "https://www.refugerestrooms.org/api/v1/restrooms"
+        url = "https://www.refugerestrooms.org/api/v1/restrooms" #
         url = f"{url}"
         req = urllib.request.Request(url)
         response = urllib.request.urlopen(req)
