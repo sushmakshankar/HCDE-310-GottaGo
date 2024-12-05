@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import	urllib.	parse, urllib.request, urllib.error, json, pprint
+import code
 
 app = Flask(__name__)
 # METHOD 1
@@ -16,10 +17,9 @@ def index():
 def dataEntry():
     if request.method == 'POST':
         query = request.form.get('query')
-        sort = 'sort' in request.form
-        return str(query) + str(sort)
-    return render_template('base.html', query=query, sort=sort)
-    # return render_template('data_entry_results.html', query=query, sort=sort)
+        results = get_events(query)
+    return render_template('index.html', results=results)
+
 
 #provides spaces for the user to input their search parameter data
 #location query (text box)
