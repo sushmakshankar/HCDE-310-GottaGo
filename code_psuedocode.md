@@ -24,3 +24,34 @@ goals: help the user identify nearby bathrooms to the event's location before an
 refuge restrooms documentation: https://learn.microsoft.com/en-us/connectors/refugerestroomsip/
 
 
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <h2>Easily find public restrooms near you</h2>
+    <form action="/search" method="GET">
+        <!-- Input for event -->
+        <div style="margin: 1em 0;">
+            <label for="event">Enter your event:</label>
+            <input type="text" id="event" name="event" style="border: 2px solid green; padding: 0.5em;">
+        </div>
+
+        <!-- Checkbox for ADA Accessible -->
+        <div style="margin: 1em 0;">
+            <input type="checkbox" id="ada" name="ada_accessible">
+            <label for="ada">ADA Accessible</label>
+        </div>
+
+        <!-- Checkbox for Unisex -->
+        <div style="margin: 1em 0;">
+            <input type="checkbox" id="unisex" name="unisex">
+            <label for="unisex">Unisex</label>
+        </div>
+
+        <!-- Submit button -->
+        <div style="margin: 2em 0;">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+</main>
+{% endblock %}
