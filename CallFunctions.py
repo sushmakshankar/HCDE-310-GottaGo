@@ -1,5 +1,6 @@
-import	urllib.	parse, urllib.request, urllib.error, json, pprint
+# Test file for the apis.
 
+import	urllib.	parse, urllib.request, urllib.error, json, pprint
 
 #API 1 Status: works :)
 def get_restroom():
@@ -16,11 +17,6 @@ def get_restroom():
         print(e.code, e.reason)
         return
 
-data = get_restroom()
-#^^Works >:)
-
-
-
 
 #API 2: Status: Works :)
 def get_event():
@@ -30,7 +26,7 @@ def get_event():
             "q": "Events in Austin",
             "hl": "en",
             "gl": "us",
-            "api_key": 
+            "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
         }
 
         base_url = "https://serpapi.com/search.json"
@@ -47,4 +43,5 @@ def get_event():
         return data
 
 
+data = get_restroom()
 data = get_event()
