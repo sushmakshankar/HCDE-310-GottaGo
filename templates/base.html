@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+<!--    add info about viewport, charset, content -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gotta Go!</title>
+<!--    add bootstrap css here-->
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #116800;
+            color: #333;
+            text-align: center;
+        }
+
+        header {
+            background-color: #F9F9F9;
+            color: darkolivegreen;
+            padding: 1em 0;
+            /*text-align: center;*/
+        }
+
+        /* Main content styles */
+        main {
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 2em;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 1em 0 0.5em;
+            font-size: 1.2em;
+            color: darkgreen;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5em;
+            border: 2px solid darkgreen;
+            border-radius: 4px;
+            font-size: 1em;
+            margin-bottom: 1em;
+        }
+
+        /* Button styles */
+        button {
+            /*padding: 0.5em 2em;*/
+            /*background-color: darkgreen;*/
+            /*color: white;*/
+            /*border: none;*/
+            /*border-radius: 4px;*/
+            /*font-size: 1em;*/
+            /*cursor: pointer;*/
+
+            margin: 1em;
+            background-color: none;
+            color: black;
+            border: #116800;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #A7C5A1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Gotta Go!</h1>
+        <h2>Find public restrooms near you!</h2>
+    </header>
+
+    <main>
+    {% block content %}
+    {% endblock %}
+<!--        <form action="/data-entry" method="POST">-->
+<!--            <input type="text" name="query" placeholder="Enter location query">-->
+<!--            <button type="submit">Submit</button>-->
+<!--        </form>-->
+    </main>
+<!--        {}-->
+<!--        link to search_results html page-->
+<!--        {}-->
+    <footer>
+        <p>Developed by Sushma Shankar and Madison McLean</p>
+        <p>Data from <a href="https://www.refugerestrooms.org/api/docs/" target="_blank">RefugeRestrooms API</a> and
+                <a href="https://developers.google.com/calendar/api/v3/reference/events" target="_blank">Google Events API</a>.
+        </p>
+    </footer>
+</body>
+</html>
+
+<!--snag user input, take address and get coordinates using function
+enter cords into bathroom api request and present results -->
+
+
+
+<!--we plan to add more html documents that extend base.html to show the search results and the restroom information.-->
+<!--our next steps for this file are to expand on our css styling-->
+

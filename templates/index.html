@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!--Query for events api is only one entry-->
+    <form action="/search" method="POST">
+        <label for="event">Search events:</label>
+        <input type="text" id="event" name="event" placeholder="'Music Concert in Seattle'" required>
+
+        <button type="submit">Search</button>
+    </form>
+{% endblock %}
+
