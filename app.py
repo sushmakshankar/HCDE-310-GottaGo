@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 import	urllib.	parse, urllib.request, urllib.error, json, pprint
 
 #flask development here
@@ -12,12 +12,17 @@ def index():
 
 #METHOD 2
 #method to collect locational query from user
-@app.route('/')
+@app.route('/data-entry', methods=['GET', 'POST'])
 def dataEntry():
-    query = request.form.get('query')
-    sort = 'sort' in request.form
+    if request.method == 'POST':
+        query = request.form.get('query')
+        sort = 'sort' in request.form
+        return str(query) + str(sort)
+    return render_template('base.html', query=query, sort=sort)
+    # return render_template('data_entry_results.html', query=query, sort=sort)
+
 #provides spaces for the user to input their search parameter data
-#location queery (text box)
+#location query (text box)
 # optional language (drop down menu? )
 
 

@@ -55,6 +55,10 @@
     <main>
     {% block content %}
     {% endblock %}
+        <form action="/data-entry" method="POST">
+            <input type="text" name="query" placeholder="Enter location query">
+            <button type="submit">Submit</button>
+        </form>
     </main>
 <!--        {}-->
 <!--        link to search_results html page-->
