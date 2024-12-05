@@ -30,7 +30,7 @@ def get_event():
             "q": "Events in Austin",
             "hl": "en",
             "gl": "us",
-            "api_key": ""
+            "api_key": 
         }
 
         base_url = "https://serpapi.com/search.json"

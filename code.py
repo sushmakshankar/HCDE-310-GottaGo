@@ -10,6 +10,35 @@
 # 2) the program will search through Google Event API to determine the events geolocational data
 # 3) the program will then enter that data as a query for a restroom location, and then use the Refuge Restrooms API to present
 # the address of the nearest restrooms to the user
+
+def get_event():
+    try:
+        params = {
+            "engine": "google_events",
+            "q": "Events in Austin",
+            "hl": "en",
+            "gl": "us",
+            "api_key": ""
+        }
+
+        base_url = "https://serpapi.com/search.json"
+
+        url = f"{base_url}?{urllib.parse.urlencode(params)}"
+        req = urllib.request.Request(url)
+        response = urllib.request.urlopen(req)
+        response_str = response.read().decode('utf-8')
+        data = json.loads(response_str)
+        print(data)
+        return data
+    except urllib.error.HTTPError as e:
+        print(e.code, e.reason)
+        return data
+
+
+data = get_event()
+
+
+
 #
 # functionality 2 (if time permits):
 # 1) user can allow the program to access their current location

@@ -12,7 +12,10 @@ def index():
 
 #METHOD 2
 #method to collect locational query from user
-#@app
+@app.route('/')
+def dataEntry():
+    query = request.form.get('query')
+    sort = 'sort' in request.form
 #provides spaces for the user to input their search parameter data
 #location queery (text box)
 # optional language (drop down menu? )

@@ -1,8 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
 
-label 1 - text entry
+    <form action="/search" method="post">
+        <div>
+            <label for="place">Place Name:</label>
+            <input type="text" id="place" name="place" required>
+        </div>
+        <div>
+            <label for="max_results">Number of Results:</label>
+            <input type="text" id="max_results" name="max_results" value="10" min="1">
+        </div>
+        <div>
+        <label for="radius">Radius (miles):</label>
+        <input type="number" id="radius" name="radius" value="2" min="1" max="50" step="1">
+        </div>
+        <div>
+            <label for="sort">Sort:</label>
+            <input type="checkbox" id="sort" name="sort">
+        </div>
+        <div>
+            <button type="submit">Search</button>
+        </div>
 
-label 2 - any other parameters (tbd)
-
-button 1 - search button
-
---- more labels if necessary
+    </form>
+{% endblock %}
