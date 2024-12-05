@@ -7,7 +7,7 @@ app = Flask(__name__)
 #index method to initalize homepage
 @app.route('/')
 def index():
-    return render_template('base.html') #the css formatting for the homepage will be defined in the base.html file
+    return render_template('index.html') #the css formatting for the homepage will be defined in the base.html file
 
 
 

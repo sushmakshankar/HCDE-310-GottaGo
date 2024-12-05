@@ -1,0 +1,34 @@
+/* Center the form in the middle of the page */
+.center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 2em;
+    max-width: 400px; /* Adjust form width */
+    border: 2px solid green;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for input boxes */
+.input-box {
+    border: 2px solid green;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+/* Ensure consistent checkbox spacing */
+input[type="checkbox"] {
+    margin-right: 0.5em;
+}
+
+/* Center text and elements inside divs */
+div {
+    text-align: center;
+    margin-bottom: 1em;
+}

@@ -66,7 +66,7 @@ def get_restroom(latitude, longitude, ada=False, unisex=False, per_page=10):
 
 
 
-cords = geocode('seattle')
+# cords = geocode('seattle')
 data = get_restroom(47.4956, -122.4359)
 for restroom in data:
     print(restroom)
