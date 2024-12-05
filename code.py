@@ -42,7 +42,7 @@ def geocode(place):
 
 
 #accesses restroom api 
-def get_restroom(event, ada=True, unisex=True, per_page=20):
+def get_restroom(event, ada=False, unisex=False, per_page=10):
     try:
         #do somethign with cords & geo wtv
         params = {
