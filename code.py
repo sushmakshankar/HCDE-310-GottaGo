@@ -1,4 +1,4 @@
-import	urllib.	parse, urllib.request, urllib.error, json, pprint
+import urllib.	parse, urllib.request, urllib.error, json, pprint
 from geopy.geocoders import Nominatim
 # this program will search through three APIs - Refuge Restrooms, Google Events API, and Google Maps API - to identify
 # the location of public bathrooms during events. the aim of the project is to encourage community engagement with local
@@ -66,6 +66,6 @@ def get_restroom(latitude, longitude, ada=False, unisex=False, per_page=10):
 
 
 cords = geocode('seattle')
-data = get_restroom(cords)
+data = get_restroom(47.4956, -122.4359)
 for restroom in data:
     print(restroom)
