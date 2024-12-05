@@ -21,4 +21,6 @@ refined and interactive way to display our data, as well as expand upon the give
 output: web or mobile app
 goals: help the user identify nearby bathrooms to the event's location before and during the event
 
+refuge restrooms documentation: https://learn.microsoft.com/en-us/connectors/refugerestroomsip/
+
 
