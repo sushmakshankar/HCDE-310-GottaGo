@@ -7,19 +7,40 @@
 
 <!--possible: link to google map directions to location-->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-</head>
-<body>
-    <h1>Search Results</h1>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Search Results</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Search Results</h1>-->
+<!--    <ul>-->
+<!--        {% for event in events %}-->
+<!--            <li>{{ event.name }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
+
+{% extends "base.html" %}
+{% block content %}
+    <h2>Available Events</h2>
     <ul>
         {% for event in events %}
-            <li>{{ event.name }}</li>
+            <li>
+                <h3>{{ event.name }}</h3>
+                <p><strong>Description:</strong> {{ event.description }}</p>
+                <p><strong>Location:</strong> {{ event.location }}</p>
+                <!-- Link to view restrooms near the event -->
+                <a href="/restrooms?event_id={{ event.id }}">View Nearby Restrooms</a>
+            </li>
+            <hr>
         {% endfor %}
     </ul>
-</body>
-</html>
+
+    {% if events|length == 0 %}
+        <p>No events found for your query. Please try again with a different search term.</p>
+    {% endif %}
+{% endblock %}
