@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 import	urllib.	parse, urllib.request, urllib.error, json, pprint
 
-#flask development here
-
 app = Flask(__name__)
 #METHOD 2
 #index method to initalize homepage
