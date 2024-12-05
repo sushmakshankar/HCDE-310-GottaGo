@@ -1,16 +1,16 @@
 import	urllib.	parse, urllib.request, urllib.error, json, pprint
+from geopy.geocoders import Nominatim
 # this program will search through three APIs - Refuge Restrooms, Google Events API, and Google Maps API - to identify
 # the location of public bathrooms during events. the aim of the project is to encourage community engagement with local
 # events by breaking down this barrier of not being able to find an accessible restroom, encouraging more people to discover
 # and engage with local events
-#
 # psuedocode:
 # functionality 1:
 # 1) user will input an event
 # 2) the program will search through Google Event API to determine the events geolocational data
 # 3) the program will then enter that data as a query for a restroom location, and then use the Refuge Restrooms API to present
-# the address of the nearest restrooms to the user
-def get_event(query, lang='en'):
+# the address of the nearest restrooms to the 
+def get_events(query, lang='en'):
     try:
         params = {
             "q": query,
@@ -30,14 +30,30 @@ def get_event(query, lang='en'):
         return
 
 
-def get_restroom(lat, lng):
+#geocode to scrape cords 
+def geocode(place):
+    geolocator = Nominatim(user_agent="functions")
+    location = geolocator.geocode(place)
+    if location == None:
+        return None
+    return location.latitude, location.longitude
+
+
+
+
+#accesses restroom api 
+def get_restroom(event, ada=True, unisex=True, per_page=20):
     try:
+        #do somethign with cords & geo wtv
         params = {
-            'Lat':lat,
-            'Lng':lng
+            'lat': latitude,
+            'lng': longitude,
+            'ada': ada,
+            'unisex': unisex,
+            'per_page': per_page
         }
 
-        url = "https://www.refugerestrooms.org/api/v1/restrooms"
+        url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json"
         url = f"{url}?{urllib.parse.urlencode(params)}"
         req = urllib.request.Request(url)
         response = urllib.request.urlopen(req)
@@ -49,7 +65,7 @@ def get_restroom(lat, lng):
         return
 
 
-
-data = get_event('events in Seattle WA')
-for x in data:
-    print(x)
+cords = geocode('seattle')
+data = get_restroom(cords)
+for restroom in data:
+    print(restroom)

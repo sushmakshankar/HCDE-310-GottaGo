@@ -2,11 +2,13 @@ from flask import Flask, render_template, request
 import	urllib.	parse, urllib.request, urllib.error, json, pprint
 
 app = Flask(__name__)
-#METHOD 2
+# METHOD 1
 #index method to initalize homepage
 @app.route('/')
 def index():
     return render_template('base.html') #the css formatting for the homepage will be defined in the base.html file
+
+
 
 #METHOD 2
 #method to collect locational query from user
@@ -24,14 +26,12 @@ def dataEntry():
 # optional language (drop down menu? )
 
 
-#possible method?
 # allow user to choose event based on query results.
 @app.route('/search', methods=['POST'])
 def search_events():
     query = request.form.get('event_query')
     language = request.form.get('language', 'en')
-    api_key = request.form.get('api_key', '')  #supplied by user
-    events = get_events(query, language, api_key)
+    events = get_events(query, language)
     return render_template('search_results.html', events=events)
 
 #METHOD 3

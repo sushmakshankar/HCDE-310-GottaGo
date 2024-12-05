@@ -1,35 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--    <form action="/search" method="POST">-->
-<!--        <div>-->
-<!--            <label for="place">Place Name:</label>-->
-<!--            <input type="text" id="place" name="place" required>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label for="max_results">Number of Results:</label>-->
-<!--            <input type="text" id="max_results" name="max_results" value="10" min="1">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--        <label for="radius">Radius (miles):</label>-->
-<!--        <input type="number" id="radius" name="radius" value="2" min="1" max="50" step="1">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label for="sort">Sort:</label>-->
-<!--            <input type="checkbox" id="sort" name="sort">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <button type="submit">Search</button>-->
-<!--        </div>-->
-
-<!--    </form>-->
-
+<!--Query for events api is only one entry-->
     <form action="/search" method="POST">
-        <label for="event">Enter your event:</label>
-        <input type="text" id="event" name="event" placeholder="E.g., Music Concert" required>
-
-        <label for="location">Enter your location:</label>
-        <input type="text" id="location" name="location" placeholder="E.g., Seattle, WA" required>
+        <label for="event">Search events:</label>
+        <input type="text" id="event" name="event" placeholder="'Music Concert in Seattle'" required>
 
         <button type="submit">Search</button>
     </form>
