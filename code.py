@@ -10,11 +10,10 @@ from geopy.geocoders import Nominatim
 # 2) the program will search through Google Event API to determine the events geolocational data
 # 3) the program will then enter that data as a query for a restroom location, and then use the Refuge Restrooms API to present
 # the address of the nearest restrooms to the 
-def get_events(query, lang='en'):
+def get_events(query):
     try:
         params = {
             "q": query,
-            "hl": lang,
             "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
         }
 
@@ -31,13 +30,12 @@ def get_events(query, lang='en'):
 
 
 #geocode to scrape cords 
-def geocode(place):
+def geocode(place, ada, unisex):
     geolocator = Nominatim(user_agent="functions")
     location = geolocator.geocode(place)
     if location == None:
         return None
-    return location.latitude, location.longitude
-
+    return get_restroom(location.latitude, location.longitude, ada, unisex)
 
 
 
@@ -63,6 +61,9 @@ def get_restroom(latitude, longitude, ada=False, unisex=False, per_page=10):
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
         return
+
+
+
 
 
 cords = geocode('seattle')

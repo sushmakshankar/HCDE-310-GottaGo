@@ -17,7 +17,9 @@ def index():
 def dataEntry():
     if request.method == 'POST':
         query = request.form.get('query')
-        results = get_events(query)
+        ada = 'ada' in request.form
+        unisex = 'unisex' in request.form
+        results = get_events(query, ada, unisex)
     return render_template('index.html', results=results)
 
 
