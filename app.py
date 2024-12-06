@@ -25,17 +25,31 @@ def search_events():
 
 
 #method to connect query search results from selected event
-@app.route('/search',  methods=['GET', 'POST'])
+# OLD METHOD
+# @app.route('/search',  methods=['GET', 'POST'])
+# def corresponding_restrooms():
+#     if request.method == 'POST':
+#         addy = request.form.get('event_location')
+#         ada = 'ada' in request.form
+#         unisex = 'unisex' in request.form
+#         b_rooms = geocode(addy, ada, unisex)
+#     else:
+#         b_rooms = []
+#     return render_template('bathroom_results.html', restrooms=b_rooms)
+
+# UPDATED METHOD
+@app.route('/bathroom_results', methods=['GET'])
 def corresponding_restrooms():
-    if request.method == 'POST':
-        addy = request.form.get('event_location')
-        ada = 'ada' in request.form
-        unisex = 'unisex' in request.form
-        b_rooms = geocode(addy, ada, unisex)
+    event_id = request.args.get('event_id')
+    event_name = request.args.get('event_name')
+    ada = request.args.get('ada') == 'false' # set to false from default?
+    unisex = request.args.get('unisex') == 'false'
+
+    if event_id and event_name:
+        b_rooms = geocode(event_id, ada, unisex)
     else:
         b_rooms = []
-    return render_template('bathroom_results.html', restrooms=b_rooms)
-    
+    return render_template('bathroom_results.html', restrooms=b_rooms, event_name=event_name)
 
 #connects secondary html page selection (METHOD 2) to avalible nearby restrooms
 #presents a list of restrooms nearby geolocational data.
