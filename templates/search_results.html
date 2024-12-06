@@ -1,13 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Upcoming Events for "{{ query }}"</h2>
+<!--search for another event -->
+    <form action="/search" method="GET"
+          style="display: flex; flex-direction: column; align-items: center; gap: 1em; font-size: 0.9em;">
+        <div style="display: flex; align-items: center; gap: 1em; justify-content: center;">
+            <label for="event" style="margin: 0;">Search:</label>
+            <input type="text" id="event" name="event" class="input-box"
+                   style="width: 250px; padding: 0.3em; font-size: 0.9em; box-sizing: border-box;">
+
+            <label for="unisex" style="margin: 0;">Unisex</label>
+            <input type="checkbox" id="unisex" name="unisex" value="true" style="margin: 0; transform: scale(0.9);">
+
+            <label for="ada" style="margin: 0;">ADA Accessible</label>
+            <input type="checkbox" id="ada" name="ada" value="true" style="margin: 0; transform: scale(0.9);">
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" style="padding: 0.3em 0.8em; font-size: 1em;">Search</button>
+    </form>
+
+
     {% if events and events|length > 0 %}
         <ul>
             {% for event in events %}
                 <li>
                     <h3>{{ event['title'] }}</h3>
                     <p><strong>Description:</strong> {{ event['description'] }}</p>
-                    <p><strong>Location:</strong> {{ event['address'] }}</p>
+                    <p><strong>Location:</strong> {{ event['address'] | join(', ') }}</p>
                     <a href="bathroom_results?event_id={{ event.id }}">See Restrooms</a>
                 </li>
                 <hr> <!--adds a line between events-->
