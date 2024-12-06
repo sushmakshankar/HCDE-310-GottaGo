@@ -33,14 +33,10 @@ def get_events(query, ada=False, unisex=False):
 
 #geocode to scrape cords 
 def geocode(address, ada, unisex):
-    print(f"Geocoding address: {address}")
-    
     geolocator = Nominatim(user_agent="functions")
     location = geolocator.geocode(address)
     if location is None:
-        print("Geocoding failed: Address not found.")
         return None
-    print(f"Geocoding successful: {location.latitude}, {location.longitude}")
     return get_restroom(location.latitude, location.longitude, ada, unisex)
 
 
@@ -61,7 +57,6 @@ def get_restroom(latitude, longitude, ada=False, unisex=False):
         response = urllib.request.urlopen(req)
         response_str = response.read().decode('utf-8')
         data = json.loads(response_str)
-        print(f"API Response: {data}")
         return data
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
