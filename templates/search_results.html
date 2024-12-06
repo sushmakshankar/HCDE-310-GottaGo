@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Available Events</h2>
+    <h2>Upcoming Events for "{{ query }}"</h2>
     {% if events and events|length > 0 %}
         <ul>
             {% for event in events %}
@@ -10,7 +10,7 @@
                     <p><strong>Location:</strong> {{ event['address'] }}</p>
                     <a href="bathroom_results?event_id={{ event.id }}">See Restrooms</a>
                 </li>
-                <hr>
+                <hr> <!--adds a line between events-->
             {% endfor %}
         </ul>
     {% else %}
