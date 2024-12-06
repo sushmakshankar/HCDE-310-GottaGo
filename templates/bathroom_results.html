@@ -9,11 +9,11 @@
                 <li>
                     <h3>{{ restroom.name }}</h3>
                     <p><strong>Location:</strong> {{ restroom.street }}</p>
-
-                        { if restroom.directions }
-                            <p><strong>Directions:</strong> {{ restroom.directions }}</p>
-                        {elif restroom.comment }
-                            <p><strong>Directions:</strong> {{ restroom.comment }}</p>
+                    {% if restroom.directions %}
+                        <p><strong>Directions:</strong> {{ restroom.directions }}</p>
+                    {% elif restroom.comment %}
+                        <p><strong>Directions:</strong> {{ restroom.comment }}</p>
+                    {% endif %}
 
                     <p><strong>Accessibility:</strong>
                         {% if restroom.accessible %}
