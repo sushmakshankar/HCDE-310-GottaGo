@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request
-import	urllib.	parse, urllib.request, urllib.error, json, pprint 
+import	urllib.parse, urllib.request, urllib.error, json, pprint
+from urllib.parse import unquote
 from code import get_events, geocode, get_restroom
 
 app = Flask(__name__)
 
-#index method to initalize homepage
+#index method to initialize homepage
 #the css formatting for the homepage will be defined in the base.html file
 @app.route('/')
 def index():
@@ -18,39 +19,24 @@ def index():
 def search_events():
     if request.method == 'GET':  
         query = request.form.get('event_query')
-        events = get_events(query)
+        ada = request.args.get('ada', 'false').lower() == 'true'
+        unisex = request.args.get('unisex', 'false').lower() == 'true'
+        events = get_events(query, ada, unisex)
     else: 
         events = []
     return render_template('search_results.html', events=events)
 
 
-#method to connect query search results from selected event
-# OLD METHOD
-# @app.route('/search',  methods=['GET', 'POST'])
-# def corresponding_restrooms():
-#     if request.method == 'POST':
-#         addy = request.form.get('event_location')
-#         ada = 'ada' in request.form
-#         unisex = 'unisex' in request.form
-#         b_rooms = geocode(addy, ada, unisex)
-#     else:
-#         b_rooms = []
-#     return render_template('bathroom_results.html', restrooms=b_rooms)
-
-# UPDATED METHOD
+# UPDATED METHOD for rendering bathroom results list. 
 @app.route('/bathroom_results', methods=['GET'])
 def corresponding_restrooms():
-    event_id = request.args.get('event_id')
+    event_address = request.args.get('event_address')
     event_name = request.args.get('event_name')
-    ada = request.args.get('ada') == 'false' # set to false from default?
-    unisex = request.args.get('unisex') == 'false'
-
-    if event_id and event_name:
-        b_rooms = geocode(event_id, ada, unisex)
+    
+    event_addy = unquote(event_address)
+    if event_addy and event_name:
+        b_rooms = geocode(event_address) ###################################################################
+        print(f"Restrooms returned: {b_rooms}")
     else:
         b_rooms = []
     return render_template('bathroom_results.html', restrooms=b_rooms, event_name=event_name)
-
-#connects secondary html page selection (METHOD 2) to avalible nearby restrooms
-#presents a list of restrooms nearby geolocational data.
-# should use python api call

@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Nearby Restrooms</h2>
-    <p>Showing restrooms near: <strong>{{ event_name }}</strong></p>
+    <p>Showing restrooms near: <strong>{{ event_name }} event</strong></p>
 
-    {% if restrooms|length > 0 %}
+    {% if restrooms and restrooms|length > 0 %}
         <ul>
             {% for restroom in restrooms %}
                 <li>
                     <h3>{{ restroom.name }}</h3>
-                    <p><strong>Location:</strong> {{ restroom.address }}</p>
+                    <p><strong>Location:</strong> {{ restroom.street }}</p>
+
+                        { if restroom.directions }
+                            <p><strong>Directions:</strong> {{ restroom.directions }}</p>
+                        {elif restroom.comment }
+                            <p><strong>Directions:</strong> {{ restroom.comment }}</p>
+
                     <p><strong>Accessibility:</strong>
                         {% if restroom.accessible %}
                             Yes
