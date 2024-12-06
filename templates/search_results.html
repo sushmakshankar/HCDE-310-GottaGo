@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>Available Events</h2>
+    <h3>Refine Search Results:</h3>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.5em;">
+            <label for="unisex">Unisex</label>
+            <input type='checkbox' id="unisex" name ="unisex">
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.5em;">
+            <label for="ada">ADA Accessible</label>
+            <input type='checkbox' id="ada" name="ada">
+        </div>
+    </div>
+
     {% if events and events|length > 0 %}
         <ul>
             {% for event in events %}
@@ -8,13 +22,9 @@
                     <h3>{{ event['title'] }}</h3>
                     <p><strong>Description:</strong> {{ event['description'] }}</p>
                     <p><strong>Location:</strong> {{ event['address'] }}</p>
-
-                    <p>Debug Address: {{ event['address'] }}</p>
-                    <a href="/bathroom_results?event_address={{ event['address'] | join(', ') | urlencode }}&event_name={{ event['title'] | urlencode }}&ada=false&unisex=false">
-                    See Restrooms
-                    </a>
-
+                    <a href="bathroom_results?event_id={{ event.id }}">See Restrooms</a>
                 </li>
+                <hr>
             {% endfor %}
         </ul>
     {% else %}
