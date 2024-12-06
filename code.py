@@ -13,6 +13,7 @@ from geopy.geocoders import Nominatim
 def get_events(query):
     try:
         params = {
+            'engine': "google_events",
             "q": query,
             "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
         }
@@ -23,32 +24,30 @@ def get_events(query):
         response = urllib.request.urlopen(req)
         response_str = response.read().decode('utf-8')
         data = json.loads(response_str)
-        return data
+        return data["events_results"]
+    
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
-        return
-
+        return []
 
 #geocode to scrape cords 
-def geocode(place, ada, unisex):
+def geocode(address, ada, unisex):
     geolocator = Nominatim(user_agent="functions")
-    location = geolocator.geocode(place)
+    location = geolocator.geocode(address)
     if location == None:
         return None
     return get_restroom(location.latitude, location.longitude, ada, unisex)
 
 
-
 #accesses restroom api 
-def get_restroom(latitude, longitude, ada=False, unisex=False, per_page=10):
+def get_restroom(latitude, longitude, ada=False, unisex=False):
     try:
         #do somethign with cords & geo wtv
         params = {
             'lat': latitude,
             'lng': longitude,
             'ada': ada,
-            'unisex': unisex,
-            'per_page': per_page
+            'unisex': unisex
         }
 
         url = "https://www.refugerestrooms.org/api/v1/restrooms/by_location.json"
@@ -57,16 +56,11 @@ def get_restroom(latitude, longitude, ada=False, unisex=False, per_page=10):
         response = urllib.request.urlopen(req)
         response_str = response.read().decode('utf-8')
         data = json.loads(response_str)
-        return data
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
-        return
+        return []
 
 
-
-
-
-# cords = geocode('seattle')
-data = get_restroom(47.4956, -122.4359)
-for restroom in data:
-    print(restroom)
+# data = get_restroom(47.4956, -122.4359)
+# for restroom in data:
+#     print(restroom)

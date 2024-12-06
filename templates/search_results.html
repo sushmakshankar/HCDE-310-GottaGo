@@ -1,3 +1,5 @@
+<!--sushma what is this commented stuff T_T -->
+
 <!--<&#45;&#45;extends base and app.py&ndash;&gt;-->
 <!--<&#45;&#45;display formatting for the search results (i.e the bathrooms) &ndash;&gt;-->
 <!--<&#45;&#45;formatiting list style & extends base&ndash;&gt;-->
@@ -23,26 +25,36 @@
 <!--    </ul>-->
 <!--</body>-->
 <!--</html>-->
+
+
+
+
 {% extends "base.html" %}
 {% block content %}
-
     <h2>Available Events</h2>
-    <ul>
-        {% for event in events %}
-            <li>
-                <h3>{{ event.name }}</h3>
-                <p><strong>Description:</strong> {{ event.description }}</p>
-                <p><strong>Location:</strong> {{ event.location }}</p>
-                <!-- Link to view restrooms near the event -->
-                <a href="/restrooms?event_id={{ event.id }}">See Restrooms</a>
-            </li>
-            <hr>
-        {% endfor %}
-    </ul>
-
-    {% if events|length == 0 %}
+    <h3>Narrow Search Results</h3>
+    <div>
+        <label>Unisex</label>
+        <input type='checkbox'>
+        <label>ADA Accessable</label>
+        <input type='checkbox' id="ada" >
+    </div>
+    {% if events and events|length > 0 %}
+        <ul>
+            {% for event in events %}
+                <li>
+                    <h3>{{ event['title'] }}</h3>
+                    <p><strong>Description:</strong> {{ event['description'] }}</p>
+                    <p><strong>Location:</strong> {{ event['address'] }}</p>
+                    <!-- Link to view restrooms near the event -->
+                    <a href="bathroom_results?event_id={{ event.id }}">See Restrooms</a>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
         <p>No events found for your query. Please try again with a different search term.</p>
+        <a href="/">Go back to search</a>
     {% endif %}
 {% endblock %}
-
 

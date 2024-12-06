@@ -5,7 +5,6 @@
 <!--    <head>-->
 <!--        <meta charset="UTF-8">-->
 <!--        <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--        <title>Easily find public restrooms near you!</title>-->
 <!--        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
 <!--    </head>-->
 <!--    <h2>Easily find public restrooms near you</h2>-->
@@ -34,22 +33,11 @@
 <!--        <div style="margin: 2em 0; text-align: center;">-->
 <!--            <button type="submit">Search</button>-->
 <!--        </div>-->
-
 <!--        with css -->
+
         <div>
             <label for="event">Enter your event:</label>
-<!--            <input type="text" id="event" name="event" class="input-box">-->
-        </div>
-        <div>
             <input type="text" id="event" name="event" class="input-box">
-        </div>
-        <div>
-            <input type="checkbox" id="ada" name="ada_accessible">
-            <label for="ada">ADA Accessible</label>
-        </div>
-        <div>
-            <input type="checkbox" id="unisex" name="unisex">
-            <label for="unisex">Unisex</label>
         </div>
         <div>
             <button type="submit">Search</button>
@@ -57,6 +45,7 @@
 
     </form>
 </main>
+
 {% endblock %}
 
 
