@@ -17,7 +17,7 @@ def get_events(query, ada=False, unisex=False):
         params = {
             'engine': "google_events",
             "q": query,
-            "api_key": API_KEY
+            "api_key": get_key()
             # "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
         }
 
