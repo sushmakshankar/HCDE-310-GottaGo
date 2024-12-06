@@ -14,9 +14,9 @@ def index():
 #provides spaces for the user to input their search parameter data
 #location query (text box)
 # allow user to choose event based on query results.
-@app.route('/search', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET'])
 def search_events():
-    if request.method == 'GET':  
+    if request.method == 'GET':
         query = request.form.get('event_query')
         events = get_events(query)
     else: 
