@@ -18,13 +18,13 @@ def index():
 @app.route('/search', methods=['GET'])
 def search_events():
     if request.method == 'GET':
-        query = request.form.get('event_query')
+        query = request.form.get('event')
         ada = request.args.get('ada', 'false').lower() == 'true'
         unisex = request.args.get('unisex', 'false').lower() == 'true'
         events = get_events(query, ada, unisex)
     else:
         events = []
-    return render_template('search_results.html', events=events)
+    return render_template('search_results.html', events=events, query=query)
 
 
 # UPDATED METHOD for rendering bathroom results list. 
