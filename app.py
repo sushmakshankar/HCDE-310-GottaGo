@@ -35,8 +35,7 @@ def corresponding_restrooms():
     
     event_addy = unquote(event_address)
     if event_addy and event_name:
-        b_rooms = geocode(event_address) ###################################################################
-        print(f"Restrooms returned: {b_rooms}")
+        b_rooms = geocode(event_address)
     else:
         b_rooms = []
     return render_template('bathroom_results.html', restrooms=b_rooms, event_name=event_name)

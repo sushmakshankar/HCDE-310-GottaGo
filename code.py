@@ -1,6 +1,5 @@
 import urllib.	parse, urllib.request, urllib.error, json
 from geopy.geocoders import Nominatim
-from secrets import get_key
 
 # this program will search through three APIs - Refuge Restrooms, Google Events API, and Google Maps API - to identify
 # the location of public bathrooms during events. the aim of the project is to encourage community engagement with local
@@ -17,8 +16,7 @@ def get_events(query, ada=False, unisex=False):
         params = {
             'engine': "google_events",
             "q": query,
-            "api_key": get_key()
-            # "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
+            "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
         }
 
         base_url = "https://serpapi.com/search.json"
