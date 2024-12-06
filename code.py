@@ -10,7 +10,7 @@ from geopy.geocoders import Nominatim
 # 2) the program will search through Google Event API to determine the events geolocational data
 # 3) the program will then enter that data as a query for a restroom location, and then use the Refuge Restrooms API to present
 # the address of the nearest restrooms to the 
-def get_events(query, ada=False, unisex=False):
+def get_events(query):
     try:
         params = {
             'engine': "google_events",
@@ -24,8 +24,9 @@ def get_events(query, ada=False, unisex=False):
         response = urllib.request.urlopen(req)
         response_str = response.read().decode('utf-8')
         data = json.loads(response_str)
-        return data["events_results"]
-    
+        data = data["events_results"]
+        print(f"API Response EVENT: {data}")
+        return data
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
         return []
@@ -33,7 +34,7 @@ def get_events(query, ada=False, unisex=False):
 #geocode to scrape cords 
 def geocode(address, ada, unisex):
     print(f"Geocoding address: {address}")
-    
+
     geolocator = Nominatim(user_agent="functions")
     location = geolocator.geocode(address)
     if location is None:
@@ -43,10 +44,10 @@ def geocode(address, ada, unisex):
     return get_restroom(location.latitude, location.longitude, ada, unisex)
 
 
-#accesses restroom api 
+# accesses restroom api 
 def get_restroom(latitude, longitude, ada=False, unisex=False):
     try:
-        #do somethign with cords & geo wtv
+        # do somethign with cords & geo wtv
         params = {
             'lat': latitude,
             'lng': longitude,
@@ -65,6 +66,8 @@ def get_restroom(latitude, longitude, ada=False, unisex=False):
     except urllib.error.HTTPError as e:
         print(e.code, e.reason)
         return []
+
+
 
 
 # data = get_restroom(47.4956, -122.4359)

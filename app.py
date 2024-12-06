@@ -11,17 +11,19 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-
 #provides spaces for the user to input their search parameter data
 #location query (text box)
 # allow user to choose event based on query results.
 @app.route('/search', methods=['GET'])
 def search_events():
     if request.method == 'GET':
+
         query = request.form.get('event_query')
         ada = request.args.get('ada', 'false').lower() == 'true'
         unisex = request.args.get('unisex', 'false').lower() == 'true'
-        events = get_events(query, ada, unisex)
+        print(f"ADA: {ada}, Unisex: {unisex}")
+
+        events = get_events(query)
     else: 
         events = []
     return render_template('search_results.html', events=events)
@@ -32,11 +34,15 @@ def search_events():
 def corresponding_restrooms():
     event_address = request.args.get('event_address')
     event_name = request.args.get('event_name')
+    ada = request.args.get('ada', 'false').lower() == 'true'
+    unisex = ada = request.args.get('ada', 'false').lower() == 'true'
+
+    print(f"ADA: {ada}, Unisex: {unisex}")
+
+    event_address = unquote(event_address, event_name)
     
-    event_addy = unquote(event_address)
-    if event_addy and event_name:
-        b_rooms = geocode(event_address) ###################################################################
-        print(f"Restrooms returned: {b_rooms}")
-    else:
-        b_rooms = []
+    b_rooms = geocode(event_address, ada, unisex)
+    
+    print(f"Restrooms returned: {b_rooms}")
+
     return render_template('bathroom_results.html', restrooms=b_rooms, event_name=event_name)
