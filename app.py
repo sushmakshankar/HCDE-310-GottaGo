@@ -22,7 +22,7 @@ def search_events():
         ada = request.args.get('ada', 'false').lower() == 'true'
         unisex = request.args.get('unisex', 'false').lower() == 'true'
         events = get_events(query, ada, unisex)
-    else: 
+    else:
         events = []
     return render_template('search_results.html', events=events)
 
