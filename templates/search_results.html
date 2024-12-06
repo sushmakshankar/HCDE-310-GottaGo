@@ -20,9 +20,7 @@
         <button type="submit" style="padding: 0.3em 0.8em; font-size: 1em;">Search</button>
     </form>
 
-
-<!--    {% if events and events|length > 0 %}-->
-    {% if query|length > 0 %}
+    {% if events and events|length > 0 %}
         <ul>
             {% for event in events %}
                 <li>
@@ -32,7 +30,6 @@
                     <a href="/bathroom_results?event_address={{ event['address'] | join(', ') | urlencode }}&event_name={{ event['title'] | urlencode }}&ada=false&unisex=false">
                         See Restrooms
                     </a>
-
                 </li>
                 <hr> <!--adds a line between events-->
             {% endfor %}

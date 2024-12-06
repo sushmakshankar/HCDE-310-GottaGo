@@ -18,7 +18,7 @@ def index():
 @app.route('/search', methods=['GET'])
 def search_events():
     if request.method == 'GET':
-        query = request.form.get('event')
+        query = request.args.get('event')
         ada = request.args.get('ada', 'false').lower() == 'true'
         unisex = request.args.get('unisex', 'false').lower() == 'true'
         events = get_events(query, ada, unisex)
