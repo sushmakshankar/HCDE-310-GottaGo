@@ -33,8 +33,8 @@ def corresponding_restrooms():
     event_address = request.args.get('event_address')
     event_name = request.args.get('event_name')
     
-    event_addy = unquote(event_address)
-    if event_addy and event_name:
+    event_address = unquote(event_address)
+    if event_address and event_name:
         b_rooms = geocode(event_address)
     else:
         b_rooms = []

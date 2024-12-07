@@ -32,9 +32,12 @@ def get_events(query, ada=False, unisex=False):
         return []
 
 #geocode to scrape cords 
-def geocode(address, ada, unisex):
+def geocode(address, ada=False, unisex=False):
+
     geolocator = Nominatim(user_agent="functions")
+    print(address)
     location = geolocator.geocode(address)
+    print(location)
     if location is None:
         return None
     return get_restroom(location.latitude, location.longitude, ada, unisex)
