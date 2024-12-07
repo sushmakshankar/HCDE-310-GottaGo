@@ -16,7 +16,7 @@ def get_events(query, ada=False, unisex=False):
         params = {
             'engine': "google_events",
             "q": query,
-            "api_key": 'a92af036d04f21a41bce9ee15ec7ff4ec06ce5196b817291a8efbc865376eb15'
+            "api_key": # add API key here
         }
 
         base_url = "https://serpapi.com/search.json"
@@ -35,9 +35,7 @@ def get_events(query, ada=False, unisex=False):
 def geocode(address, ada=False, unisex=False):
 
     geolocator = Nominatim(user_agent="functions")
-    print(address)
     location = geolocator.geocode(address)
-    print(location)
     if location is None:
         return None
     return get_restroom(location.latitude, location.longitude, ada, unisex)
